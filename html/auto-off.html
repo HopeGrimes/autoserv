@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"> 
+		<title>Auto-off page</title>
+		<link rel="stylesheet" type="text/css" href="stylesheet/common_styles-file.css">
+		<script src="javascript/auto-off.js"></script>
+		<script>
+			function onLoader() {
+				document.getElementById("autoOffState").innerHTML = autoOff_state;
+			}
+			function httpGet (theUrl) {
+				var xmlHttp = null;
+				xmlHttp = new XMLHttpRequest();
+				xmlHttp.open( "GET", theUrl, true );
+				xmlHttp.send();
+			}
+			function enableAutoOff() {
+				httpGet('http://10.120.24.80/cgi-bin/enable_auto-off.sh');
+			}
+			function disableAutoOff() {
+				httpGet('http://10.120.24.80/cgi-bin/disable_auto-off.sh');
+			}
+			function archiveLog() {
+				httpGet('http://10.120.24.80/cgi-bin/archive-log.sh');
+			}
+		</script>
+	</head>
+
+	<body class="bg-black" onload="onLoader();">
+		<div>
+<!--
+			<a class="common tiny" onclick="goBack();">Back</a>
+			<img src="graphics/logo.png" width="225" height="150" alt="Production Logo">
+//-->
+		</div>
+		<table class="table-buttons full-width table-align-center">
+			<tr class="table-buttons">
+				<td colspan="3">
+					<span class="arial-big light-gray">Auto-off is currently:</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<br><br><br><br>
+				</td>
+			</tr>
+			<tr class="table-no-buttons">
+				<td colspan="3" class="table-no-buttons">
+					<span class="simple-no-buttons" id="autoOffState">[ Error obtaining status ]</span>
+				</td>
+			</tr>
+			<!-- Bridge Main Left -->
+			<tr class="table-buttons">
+				<td class="table-buttons">
+					<a class="common simple yellow width-80" onclick="setTimeout(enableAutoOff, 1000);">Click to ENABLE normal auto-off schedule</a>
+				</td>
+				<td class="table-buttons">
+					<a class="common simple yellow width-80" href="http://10.120.24.80/log/projector-automation.log">Click to VIEW log file.</a>
+				</td>
+				<td class="table-buttons">
+					<a class="common simple yellow width-80" onclick="setTimeout(disableAutoOff, 1000);">Click to DISABLE auto-off functions entirely</a>
+				</td>
+			</tr>
+			<tr class="table-buttons">
+				<td class="table-buttons">
+					<br>
+				</td>
+				<td class="table-buttons">
+					<a class="common simple yellow width-80" onclick="setTimeout(archiveLog, 1000);">Click to ARCHIVE log file.</a>
+				</td>
+				<td class="table-buttons">
+					<br>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

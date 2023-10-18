@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"> 
+		<title>Worship Center</title>
+		<link rel="stylesheet" type="text/css" href="stylesheet/common_styles-file.css">
+		<script type="text/javascript" src="/javascript/jquery.js"></script>
+		<script>
+			function httpGet (theUrl) {
+				var xmlHttp = null;
+				xmlHttp = new XMLHttpRequest();
+				xmlHttp.open( "GET", theUrl, true );
+				xmlHttp.send();
+			}
+		</script>
+		<script type="text/javascript">
+			function doRefresh(){
+				$("#wc1").load("wc1.txt");
+				$("#time").load("cgi-bin/time.cgi");
+			}
+			$(function(){
+				setInterval(doRefresh, 1000);
+			});
+		</script>
+	</head>
+
+	<body class="bg-black">
+		<div>
+			<img src="graphics/White_HopeProduction.png" alt="Hope Production Logo" height="150" width="225">
+			<br>
+			<br>
+		</div>
+		<table class="table-buttons full-width table-align-center">
+			<tr class="table-buttons">
+				<td colspan="2">
+					<span class="arial-big light-gray" id="time"></span>
+				</td>
+			</tr>	
+			<tr class="table-buttons">
+				<td colspan="2">
+					<span class="arial-big light-gray">Display power controls:</span>
+				</td>
+			</tr>	
+			<tr class="table-buttons">
+				<td class="table-buttons">
+					<a class="common simple green width-80" onclick="httpGet('http://10.120.24.82/cgi-bin/raw.pl?cmd=POWR0001%0D');">South Atrium TV ON</a>
+				</td>
+				<td class="table-buttons">
+					<a class="common simple red width-80" onclick="httpGet('http://10.120.24.82/cgi-bin/raw.pl?cmd=POWR0000%0D');">South Atrium TV OFF</a>
+				</td>
+			</tr>
+			<tr class="table-buttons">
+				<td class="table-buttons">
+					<a class="common simple green width-80" onclick="httpGet('http://10.120.24.83/cgi-bin/raw.pl?cmd=POWR0001%0D');">North Atrium TV ON</a>
+				</td>
+				<td class="table-buttons">
+					<a class="common simple red width-80" onclick="httpGet('http://10.120.24.83/cgi-bin/raw.pl?cmd=POWR0000%0D');">North Atrium TV OFF</a>
+				</td>
+			</tr>
+			<tr class="table-buttons">
+				<td class="table-buttons">
+					<a class="common simple green width-80" onclick="httpGet('http://10.120.24.80/cgi-bin/wc_fbtv_ON.sh');">Foldback TV ON</a>
+				</td>
+<!--
+				<td class="table-buttons">
+					<a class="common simple red width-80" onclick="httpGet('http://10.120.24.83/cgi-bin/raw.pl?cmd=POWR0000%0D');">North Atrium TV OFF</a>
+				</td>
+-->
+			</tr>
+			<tr class="table-buttons">
+				<td class="table-buttons">
+					<a class="common simple green width-80" onclick="httpGet('http://10.120.24.80/cgi-bin/tv-control.cgi?wc_hltvON');">HL Fill TV ON</a>
+				</td>
+				<td class="table-buttons">
+					<a class="common simple red width-80" onclick="httpGet('http://10.120.24.80/cgi-bin/tv-control.cgi?wc_hltvOFF');">HL Fill TV OFF</a>
+				</td>
+			</tr>
+			<tr class="table-buttons">
+				<td class="table-buttons">
+					<a class="common simple green width-80" onclick="httpGet('http://10.120.24.80/cgi-bin/tv-control.cgi?wc_hrtvON');">HR Fill TV ON</a>
+				</td>
+				<td class="table-buttons">
+					<a class="common simple red width-80" onclick="httpGet('http://10.120.24.80/cgi-bin/tv-control.cgi?wc_hrtvOFF');">HR Fill TV OFF</a>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
