@@ -48,12 +48,11 @@ def log(txt):
 # define additional functions
 
 def wcfbtvON():
-# if cmd == 'wc_fbtvON':
 #	log('WC FB TV on')
 	send_magic_packet('b0:37:95:21:0e:7f')
 
 def wcfbtvOFF():
-	#	log('WC FB TV off')
+#	log('WC FB TV off')
 	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	sock.settimeout(5)
 	sock.connect((wc_fbTV, PORT))
@@ -76,9 +75,9 @@ def wchltvOFF():
 	print msg
 	sock.close()
 
-# def wchrtvON():
+def wchrtvON():
 #	log('WC HR TV on')
-#	send_magic_packet('7c:64:6c:**:**:**')
+	send_magic_packet('64:E4:A5:8A:6F:7E')
 
 def wchrtvOFF():
 #	log('WC HR TV off')
@@ -93,7 +92,7 @@ def wchrtvOFF():
 if cmd == 'allON':
 	wcfbtvON()
 	wchltvON()
-#	wchrtvON()
+	wchrtvON()
 	contents = urllib2.urlopen(atrium1url+lgPION).read()
 	time.sleep(1)
 	contents = urllib2.urlopen(atrium2url+lgPION).read()
@@ -111,12 +110,12 @@ elif cmd == 'allOFF':
 elif cmd == 'wcON':
 	wcfbtvON()
 	wchltvON()
-#	wchrtvON()
+	wchrtvON()
 
 elif cmd == 'wcOFF':
 	wcfbtvOFF()
 	wchltvOFF()
-#	wchrtvOFF()
+	wchrtvOFF()
 
 elif cmd == 'atriumON':
 	contents = urllib2.urlopen(atrium1url+lgPION).read()
@@ -158,19 +157,19 @@ elif cmd == 'wc_hltvOFF':
 	print msg
 	sock.close()
 
-#elif cmd == 'wc_hrtvON':
-#	log('WC HL TV on')
-#	send_magic_packet('7c:64:6c:a1:2c:45')
+elif cmd == 'wc_hrtvON':
+#	log('WC HR TV on')
+	send_magic_packet('64:E4:A5:8A:6F:7E')
 
-#elif cmd == 'wc_hrtvOFF':
-#	log('WC HL TV off')
-#	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#	sock.settimeout(5)
-#	sock.connect((wc_hrTV, PORT))
-#	sock.sendall(lgTVOFF + '\r')
-#	msg = sock.recv(9761)
-#	print msg
-#	sock.close()
+elif cmd == 'wc_hrtvOFF':
+#	log('WC HR TV off')
+	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	sock.settimeout(5)
+	sock.connect((wc_hrTV, PORT))
+	sock.sendall(lgTVOFF + '\r')
+	msg = sock.recv(9761)
+	print msg
+	sock.close()
 
 
 else:
