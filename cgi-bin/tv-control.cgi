@@ -122,13 +122,13 @@ elif cmd == 'allOFF':
 	time.sleep(1)
 
 elif cmd == 'wcON':
-#	wcfbtvON()
+	wcfbtvON()
 	wchltvON()
 	wchrtvON()
 #	send_magic_packet('64:E4:A5:8A:6F:7E')
 
 elif cmd == 'wcOFF':
-#	wcfbtvOFF()
+	wcfbtvOFF()
 	wchltvOFF()
 	wchrtvOFF()
 #	os.system(lgtvipcont+wcfbtv_IP+wcfbtv_key+lg_ip_ctrlOFF)
